@@ -1,0 +1,117 @@
+package firstjava;
+import java.util.*;
+
+public class BankingApplication {
+     public int amount;
+     int Balance;
+     int previousTransaction;
+     String customer_name;
+     int customer_id;
+     static int choice;
+     BankingApplication(String custome_name,int customer_id)
+     {
+    	 this.customer_name=custome_name;
+    	 this.customer_id=customer_id;
+     }
+     
+	private void Deposit(int amount) {
+		if (amount!=0)
+		{
+			Balance=Balance+amount;
+			previousTransaction=amount;
+		}
+		System.out.println("the amount deposited : "+amount);
+		System.out.println("===================================================");
+		System.out.println("the total balance :"+Balance);
+		System.out.println("===================================================");
+	}	
+	private void Withdraw(int amountwith) {
+		if(amountwith!=0)
+		{
+			Balance=Balance-amountwith;
+			previousTransaction=-amountwith;
+		}
+		System.out.println("the withdrawen amount"+amountwith);
+		System.out.println("===================================================");
+		System.out.println("the total Balance:"+Balance);
+		System.out.println("===================================================");
+		
+	}
+	private void Balance() {
+		System.out.println("the balance is :"+Balance);
+		
+	}
+	private void previousTransaction() {
+		if(previousTransaction>0){
+			System.out.println("deposited"+previousTransaction);
+		}
+		else if(previousTransaction<0)
+		{
+		System.out.println("withdrawen"+previousTransaction);
+		}
+		else
+		{
+		System.out.println("no transaction");
+		}
+		
+	}
+	public static void main(String[] args) {
+		Scanner sc= new Scanner(System.in);
+		System.out.println("Enter the Account name");
+		String name=sc.nextLine();
+		System.out.println("===================================================");
+		System.out.println("Enter your id");
+		int id=sc.nextInt();
+		System.out.println("===================================================");
+		System.out.println("Welcome "+name+", to your Account");
+		System.out.println("===================================================");
+		BankingApplication ob=new BankingApplication(name,id);
+		
+	do{
+			System.out.println("===================================================");
+			System.out.println("1.Deposit");
+			System.out.println("2.Withdraw");
+			System.out.println("3.Checking the Balance");
+			System.out.println("4.Previous Transaction");
+			System.out.println("5.exit");
+			System.out.println("Enter the choice");
+			int choice=sc.nextInt();
+		switch(choice)
+		{
+		case 1:System.out.println("deposit the amount");
+		       System.out.println("===================================================");
+		       System.out.println("enter the amount ");
+		       System.out.println("===================================================");
+		       int amount=sc.nextInt();
+		       ob.Deposit(amount);
+		       break;
+		       
+		case 2:System.out.println("withdrawing the amount");
+		       System.out.println("===================================================");
+		       System.out.println("enter the amount to be withdrawen");
+		       System.out.println("===================================================");
+		       int amountwith=sc.nextInt();
+		       ob.Withdraw(amountwith);
+		       break;
+		       
+		case 3:System.out.println("Checking the balance");
+			   System.out.println("===================================================");
+		       ob.Balance();
+		       break;
+		        
+		case 4:System.out.println("previous Transaction");
+		       System.out.println("===================================================");
+		       ob.previousTransaction();
+			   break;
+		
+		case 5:System.out.println("Exiting from the Application");
+		       System.exit(0);
+		       
+		       
+	   default: System.out.println("Invalid option");
+	            break;
+		 }
+	}while(choice!=5);
+  }
+}	
+	
